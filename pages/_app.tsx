@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -24,9 +25,7 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-
   const [mode, setMode] = React.useState<'light' | 'dark'>('light')
-
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -35,6 +34,7 @@ export default function MyApp(props: MyAppProps) {
     }),
     []
   )
+  const router = useRouter()
 
   const theme = React.useMemo(
     () =>
@@ -46,15 +46,21 @@ export default function MyApp(props: MyAppProps) {
     [mode]
   )
 
+  const getTitle = (path: string) => {
+    if (path === '/') return 'Salvatore Argentieri'
+    let title = path.substring(1)
+    return title[0].toUpperCase() + title.slice(1).toLowerCase()
+  }
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>My page</title>
+        <title>{getTitle(router?.pathname)}</title>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={responsiveFontSizes(theme)}>
-          <Layout>
+          <Layout title={getTitle(router?.pathname)}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Component {...pageProps} />

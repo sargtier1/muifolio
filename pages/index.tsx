@@ -12,9 +12,9 @@ export default function Index() {
           Next.js v5-beta with TypeScript example
         </Typography>
       </Box>
-      <Link to='about' href='/about'>
-        aboot
-      </Link>
+      <Link href='/about'>aboot</Link>
+      <br />
+      <Link href='/blog'>bloooger</Link>
     </Container>
   )
 }

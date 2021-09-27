@@ -5,20 +5,14 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Link from '../src/components/Link'
 
-export default function About() {
+export default function Blog() {
   return (
     <Container maxWidth='sm'>
       <Box sx={{ my: 4 }}>
         <Typography variant='h4' component='h1' gutterBottom>
-          this is my about page, learn more about me!
+          This is the blog home page, check out my posts
         </Typography>
-        <Button
-          variant='contained'
-          component={Link}
-          noLinkStyle
-          href='/'
-          sx={{ zIndex: 0 }}
-        >
+        <Button variant='contained' component={Link} noLinkStyle href='/'>
           Go to the main page
         </Button>
       </Box>

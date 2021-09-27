@@ -11,6 +11,8 @@ export const ColorModeSwitch = ({ ...rest }) => {
     <>
       <IconButton
         {...rest}
+        disableRipple
+        size='large'
         aria-label='Change Color Mode'
         onClick={colorMode.toggleColorMode}
         sx={{
